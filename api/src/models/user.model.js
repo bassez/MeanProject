@@ -21,4 +21,4 @@ UserSchema.method({
 
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = UserSchema;

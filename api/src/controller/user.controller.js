@@ -1,15 +1,23 @@
-/**
- * Created by MisterGreen on 05/05/2017.
- */
 "use strict";
+class UserController {
 
-
-class User {
+    static get (id) {
+        console.log("hello");
+    }
 
     static getUserById (id) {
         console.log("hello");
-
     }
+
+    static getUserById (id) {
+        console.log("hello");
+    }
+
+    static getUserById (id) {
+        console.log("hello");
+    }
+
+
 }
 
-module.exports = Users;
+module.exports = UserController;

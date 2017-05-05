@@ -1,7 +1,4 @@
 "use strict";
-
-
-
 class Crimes {
 
     static getCrimeById (id) {

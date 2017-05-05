@@ -9,9 +9,11 @@
       .controller('TimelineCtrl', TimelineCtrl);
 
   /** @ngInject */
-  function TimelineCtrl() {
+  function TimelineCtrl($scope) {
     var timelineBlocks = $('.cd-timeline-block'),
         offset = 0.8;
+
+    $scope.truc = [1, 2, 3, 4, 5];
 
     //hide timeline blocks which are outside the viewport
     hideBlocks(timelineBlocks, offset);

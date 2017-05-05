@@ -5,13 +5,13 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.components.mail')
-    .controller('MailListCtrl', MailListCtrl);
+  angular.module('BlurAdmin.pages.users.validation')
+    .controller('ValidationCtrl', ValidationCtrl);
 
   /** @ngInject */
-  function MailListCtrl($stateParams,  mailMessages) {
+  function ValidationCtrl($stateParams,  mailMessages) {
     var vm = this;
-    vm.messages = [{
+    vm.messages = vm.messages = [{
         id: "4563faass",
         name: "Nasta Linnie",
         subject: "Great text",
@@ -24,7 +24,7 @@
         tag: "friend",
         labels: ['inbox']
     },
-        ]
+    ]
     vm.label = $stateParams.label;
   }
 
