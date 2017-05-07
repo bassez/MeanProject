@@ -1,10 +1,12 @@
-const userCtrl = require("../controller/user.controller.js");
+const ctrl = require("../controller/user.controller.js");
+const mw = require("../middleware/auth.middleware");
 const express = require('express');
-var router = express.Router();
-router.put("/user/:id", function () {console.info ("samarch")});
-router.get("/user/:id", function () {console.info ("samarch")});
-router.delete("/user/:id", function () {console.info ("samarch")});
-router.post("/user", function () {console.info ("samarch")});
-router.get("/users", function () {console.info ("samarch")});
+const router = express.Router();
+
+router.put("/user/:id", mw.mustBePoliceChief, ctrl.update);
+router.get("/user/:id", mw.mustBePoliceChief, ctrl.read);
+router.delete("/user/:id", mw.mustBePoliceChief, ctrl.delete);
+router.post("/user", mw.mustBePoliceChief, ctrl.create);
+router.get("/users", mw.mustBePoliceChief, ctrl.readAll);
 
 module.exports = router;
