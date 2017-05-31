@@ -35,7 +35,7 @@
       }
     }, 2000);
 
-    $rootScope.$isLogged = true;
+    $rootScope.$isLogged = false;
 
     $rootScope.$baSidebarService = baSidebarService;
   }

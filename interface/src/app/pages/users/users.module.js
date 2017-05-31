@@ -17,7 +17,7 @@
           template: '<div ui-view  autoscroll="true" autoscroll-body-top></div>',
           title: 'Utilisateurs',
           sidebarMeta: {
-            icon: 'ion-stats-bars',
+            icon: 'ion-person',
             order: 150,
           },
         });
