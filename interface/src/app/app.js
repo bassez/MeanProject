@@ -11,8 +11,11 @@ angular.module('BlurAdmin', [
   "xeditable",
   'ui.slimscroll',
   'ngJsTree',
+    'angular-crypto-js',
+    'ngCookies',
   'angular-progress-button-styles',
 
   'BlurAdmin.theme',
-  'BlurAdmin.pages'
+  'BlurAdmin.pages',
+  'BlurAdmin.auth'
 ]);

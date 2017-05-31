@@ -7,40 +7,48 @@ const userModel = mongoose.model('User', userSchema);
 
 class AuthController {
     static mustBeAgent (req, res, next) {
-        AuthController.checkUser(req, res, (rank) => {
-            if (rank >= 1)
+        AuthController.checkUser(req, res, (user) => {
+            if (user.rank >= 1)
                 return next();
             else
                 res.status(403).send("You must be Agent");
         });
     }
     static mustBeDetective (req, res, next) {
-        AuthController.checkUser(req, res, (rank) => {
-            if (rank >= 2)
+        AuthController.checkUser(req, res, (user) => {
+            if (user.rank >= 2)
                 return next();
             else
                 res.status(403).send("You must be Detective");
         });
     }
     static mustBePoliceChief (req, res, next) {
-        AuthController.checkUser(req, res, (rank) => {
-            if (rank >= 3)
+        AuthController.checkUser(req, res, (user) => {
+            if (user.rank >= 3)
                 return next();
             else
                 res.status(403).send("You must be Police Chief");
         });
     }
 
+    static mustBeConnected (req, res, next) {
+        if (!AuthController.isConnected (req, res))
+            return;
+        AuthController.checkUser(req, res, (user) => {
+            res.status(200).send(user);
+        });
+
+    }
+
     static checkUser (req, res, callback) {
-        if (!AuthController.isConnected (req, res, next))
+        if (!AuthController.isConnected (req, res))
             return;
         var userCredentials = basicAuth(req);
         userModel.findOne({username: userCredentials.name}, function (e, user) {
-            console.log(user);
             if (!user || userCredentials.name != user.username || crypto.SHA1(userCredentials.pass) != user.password)
                 res.status(403).send("Wrong credentials !");
             else
-             callback(user.rank);
+             callback(user);
         });
     }
 
