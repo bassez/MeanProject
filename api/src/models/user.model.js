@@ -18,10 +18,16 @@ var UserSchema = new mongoose.Schema({
     rank: {
         type: Number,
         required: true
+    },
+    isValid :{
+        type: Boolean,
+        required: true
     }
 });
 
+
 UserSchema.method({
+
 
 });
 

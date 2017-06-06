@@ -1,18 +1,31 @@
 const express = require('express');
 const app = express();
+
 const mongoose = require('mongoose');
-const userSchema = require('./models/user.model.js');
 
-mongoose.connect('mongodb://localhost:27017/meanproject');
+mongoose.connect('mongodb://localhost:27017/meanProject');
 
-var userModel = mongoose.model('User', userSchema);
 
 const userRouter = require('./routes/user.router.js');
 const crimeRouter = require('./routes/crime.router.js');
 
+// app.use((req, res, next) => {
+//     res.setHeader('Content-Type', 'application/json');
+//     next();
+// });
+
+var bodyParser   = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
 app.use("/", userRouter);
 app.use("/", crimeRouter);
 
-app.listen(3000, function () {
+
+
+
+app.listen(3002, function () {
   console.log('Example app listening on port 3000!');
 });
