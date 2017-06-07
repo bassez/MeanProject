@@ -37,6 +37,14 @@
 
     $rootScope.$isLogged = false;
 
+    $rootScope.ranks = ["", "Agent", "Detective", "Police Chief"];
+
+    $rootScope.logout = () => {
+        console.log("deconnexion");
+        $rootScope.$isLogged = false;
+        $rootScope.loggedUser = null;
+    }
+
     $rootScope.$baSidebarService = baSidebarService;
   }
 

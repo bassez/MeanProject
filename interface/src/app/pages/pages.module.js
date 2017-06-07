@@ -16,8 +16,7 @@
     'BlurAdmin.pages.charts',
     'BlurAdmin.pages.maps',
     'BlurAdmin.pages.profile',
-      'BlurAdmin.pages.crimes',
-      'BlurAdmin.pages.users'
+      'BlurAdmin.pages.crimes'
   ])
       .config(routeConfig);
 
