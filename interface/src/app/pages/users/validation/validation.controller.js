@@ -10,7 +10,6 @@
 
   /** @ngInject */
   function ValidationCtrl($scope) {
-      $scope.messages = [{name: "truc"}, {name: "bidule"}, {name: "machin"}, {name: "chose"}]
   }
 
 })();

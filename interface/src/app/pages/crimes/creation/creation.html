@@ -2,8 +2,8 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div ba-panel ba-panel-title="Save a new crime" ba-panel-class="with-scroll">
-                <ba-wizard>
+            <div ba-panel ba-panel-title="Register a new crime" ba-panel-class="with-scroll">
+                <ba-wizard >
                     <ba-wizard-step title="Identification" form="vm.personalInfoForm">
                         <form name="vm.personalInfoForm" novalidate>
                             <div class="row">
@@ -11,11 +11,15 @@
                                     <div class="form-group has-feedback"
                                          title="Internal BPD report number">
                                          <label  for="exampleUsername1">Compnos</label>
-                                        <input type="text" class="form-control" id="exampleUsername1" name="compnos"  ng-model="form.compnos" required>
+                                        <input type="number" class="form-control" id="exampleUsername1" name="compnos"  ng-model="form.compnos" >
                                     </div>
                                     <div class="form-group" >
                                         <label for="exampleInputEmail1">Nature Code</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" name="nature_code"  ng-model="form.nature_code" required>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" name="nature_code"  ng-model="form.naturecode" >
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label for="ucrpart">UCR Part</label>
+                                        <input type="number" min="1" max="3" step="1" value="1"  class="form-control" id="ucrpart" name="ucrpart" ng-model="form.ucrpart" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -37,23 +41,21 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
                                          <label for="cooX">X</label>
-                                        <input type="text" class="form-control" id="cooX" name="productName" ng-model="form.x" required>
-                                        <span class="help-block error-block basic-block">Required</span>
+                                        <input type="number" class="form-control" id="cooX" name="productName" ng-model="form.x" >
                                     </div>
                                     <div class="form-group" >
                                         <label for="cooY">Y</label>
-                                        <input type="text" class="form-control" id="cooY" name="productId" ng-model="form.y" required>
-                                        <span class="help-block error-block basic-block">Required</span>
+                                        <input type="number" class="form-control" id="cooY" name="productId" ng-model="form.y" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
                                         <label for="streetname">Street Name</label>
-                                        <input type="text" class="form-control" id="streetname" name="productName" ng-model="form.streetname" required>
+                                        <input type="text" class="form-control" id="streetname" name="productName" ng-model="form.streetname" >
                                     </div>
                                     <div class="form-group" >
                                         <label for="xstreetname">Cross Street Name (optional)</label>
-                                        <input type="text" class="form-control" id="xstreetname" name="productId" ng-model="form.xstreetname" required>
+                                        <input type="text" class="form-control" id="xstreetname" name="productId" ng-model="form.xstreetname" >
 
                                 </div>
                             </div>
@@ -61,21 +63,19 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
-                                        <label for="reptDistrict">Reptorted District</label>
-                                        <input type="text" class="form-control" id="reptDistrict" name="reptDistrict"  ng-model="vm.productInfo.productName" required>
-                                        <span class="help-block error-block basic-block">Required</span>
+                                        <label for="reptdistrict">Reptorted District</label>
+                                        <input type="text" class="form-control" id="reptdistrict" name="reptdistrict"  ng-model="form.reptdistrict" >
                                     </div>
                                     <div class="form-group" >
                                         <label for="reporting_area">Reporting Area</label>
-                                        <input type="text" class="form-control" id="reporting_area" name="reporting_area" ng-model="vm.productInfo.productId" required>
-                                        <span class="help-block error-block basic-block">Required</span>
+                                        <input type="number" class="form-control" id="reporting_area" name="reporting_area" ng-model="form.reportingarea" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-group" >
                                             <label for="localisation">Localisation</label>
-                                            <input type="text" class="form-control" id="localisation" ng-model="vm.productInfo.productId" required>
+                                            <input type="text" class="form-control" id="localisation" ng-model="form.location" >
                                         </div>
                                     </div>
                                 </div>
@@ -86,35 +86,86 @@
                         <form name="vm.addressForm" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group has-feedback"
-                                         ng-class="{'has-error': vm.addressForm.address.$invalid && (vm.addressForm.address.$dirty || vm.addressForm.$submitted)}">
-                                        <label for="productName">Shipment address</label>
-                                        <input type="text" class="form-control" id="address" name="address" placeholder="Shipment address" ng-model="vm.shipment.address" required>
+                                    <div class="form-group has-feedback">
+                                        <label for="year">Year</label>
+                                        <input type="number" min="1800" max="2100" step="1" value="2017" class="form-control" id="year" name="year" ng-model="form.year" required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="productName">Shipment method</label>
-                                        <select class="form-control" title="Category" selectpicker>
-                                            <option selected>Fast & expensive</option>
-                                            <option>Cheap & free</option>
+                                    <div class="form-group has-feedback">
+                                        <label for="month">Month</label>
+                                        <input type="number" min="1" max="12" step="1" value="1"  class="form-control" id="month" name="address" ng-model="form.month" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label for="day_week">Day Week</label>
+                                        <select class="form-control" id="day_week" ng-model="form.day_week" title="Day in week" selectpicker>
+                                            <option selected>Sunday</option>
+                                            <option>Monday</option>
+                                            <option>Tuesday</option>
+                                            <option>Wednesday</option>
+                                            <option>Thursday</option>
+                                            <option>Friday</option>
+                                            <option>Saturday</option>
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="checkbox">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox">
-                                    <span>Save shipment info</span>
-                                </label>
-                            </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="datefrom">Date from</label>
+                                            <p class="input-group">
+                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="options" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open()">
+                                                        <i class="glyphicon glyphicon-calendar"></i>
+                                                    </button>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="form-group has-feedback">
+                                            <label for="shift">Shift</label>
+                                            <select class="form-control" id="shift" ng-model="form.shift" title="Shift" selectpicker>
+                                                <option selected>Day</option>
+                                                <option>First</option>
+                                                <option>Last</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                         </form>
                     </ba-wizard-step>
-                    <ba-wizard-step title="Details">
-                        <form class="form-horizontal" name="vm.finishForm" novalidate>
-                            Congratulations! You have successfully filled the form!
-                        </form>
+                    <ba-wizard-step title="Details" callback="function (){console.log('coucou')}">
+                            <form class="form-horizontal" name="vm.finishForm" novalidate>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="checkbox">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" ng-model="form.shooting">
+                                                <span>Shooting </span>
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" ng-model="form.domestic">
+                                                <span>Domestic</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group" >
+                                                    <label for="weapon_type">Weapon Type</label>
+                                                    <input type="text" class="form-control" id="weapon_type" ng-model="form.weapon_type" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <div class="col-md-12">
+                            <button ng-click="createCrime()" type="button" style="width: 90%; margin-left: 5%" class="btn btn-primary">
+                                <i class="glyphicon glyphicon-add" >  Create</i>
+                            </button>
+                                </div>
+                            </div>
                     </ba-wizard-step>
                 </ba-wizard>
             </div>
