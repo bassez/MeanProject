@@ -2,13 +2,13 @@
     'use strict';
 
     angular.module('BlurAdmin.auth')
-        .directive('loginForm', loginForm);
+        .directive('registerForm', registerForm);
 
     /** @ngInject */
-    function loginForm() {
+    function registerForm() {
         return {
             restrict: 'E',
-            templateUrl: 'app/auth/views/auth.view.html',
+            templateUrl: 'app/auth/views/reg.view.html',
         };
     }
 

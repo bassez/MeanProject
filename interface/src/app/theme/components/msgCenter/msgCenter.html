@@ -17,11 +17,12 @@
         <a href class="clearfix" ng-repeat="user in validations">
            <div style="float: left; width: 40%;">
             <div>{{user.username}}</div>
-            <div>{{user.email}}</div>
+            <div>{{user.mail}}</div>
             <div>{{ranks[user.rank]}}</div>
           </div>
           <div style="float: right;">
-            <button style="margin-top: 25%" ng-click="acceptUser(user)">Valider</button>
+            <button style="padding: 3px 10px 3px 10px; margin-top: 7px;" class="btn btn-primary" ng-click="acceptUser(user)">&#x2714;</button>
+            <button style="padding: 3px 6px 3px 6px; margin-top: 7px;" class="btn btn-danger" ng-click="removeUser(user)">&#10006;</button>
           </div>
 
         </a>

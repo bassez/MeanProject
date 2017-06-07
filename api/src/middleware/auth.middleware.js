@@ -47,8 +47,17 @@ class AuthController {
         userModel.findOne({username: userCredentials.name}, function (e, user) {
             if (!user || userCredentials.name != user.username || crypto.SHA1(userCredentials.pass) != user.password)
                 res.status(403).json("Wrong credentials !");
+<<<<<<< HEAD
             else
              callback(user);
+=======
+            else {
+                if (!user.isValid)
+                    res.status(403).json("User is not valid ! Please wait for a Police Chief validation.");
+                else
+                    callback(user);
+            }
+>>>>>>> fe33f8542bad6823e3bcc948404112b3bc9f0e22
         });
     }
 

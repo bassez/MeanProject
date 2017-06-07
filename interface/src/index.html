@@ -53,8 +53,9 @@
   <div></div>
 </div>
 
-<main ng-show="$pageFinishedLoading && !$isLogged"class="panel col-lg-4 col-lg-offset-4" style="margin-top: 10%" ng-controller="LoginCtrl">
-  <login-form></login-form>
+<main  class="panel col-lg-4 col-lg-offset-4" style="margin-top: 10%" >
+  <register-form ng-show="$pageFinishedLoading && !$isLogged && $signUp" ng-controller="RegisterCtrl"></register-form>
+  <login-form ng-show="$pageFinishedLoading && !$isLogged && $signIn" ng-controller="LoginCtrl" ></login-form>
 </main>
 
 <!-- build:js(src) scripts/vendor.js -->
