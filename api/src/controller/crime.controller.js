@@ -47,7 +47,7 @@ class CrimeController {
             CrimeModel.findById(req.params.id, function (err, results) {
                 if (err) console.log(err);
                 if (results === null)
-                    console.log("No such crime")
+                    res.json("No such crime");
                 else{
                     console.log(results);
                     res.json(results);
@@ -65,11 +65,11 @@ class CrimeController {
                 if (err) console.log(err);
 
                 if (results === null)
-                    console.log("No such crime")
+                    res.json("No such crime");
                 else
                     console.log(results);
             });
-            res.json("update");
+            res.json("Updated");
         }
     }
 
@@ -93,7 +93,21 @@ class CrimeController {
         CrimeModel.find(function (err, results) {
             if (err) console.log(err);
             if (results === null)
-                console.log("No crimes registered")
+                res.json("No crimes registered");
+            else{
+                res.json(results);
+            }
+        });
+    }
+
+    static search (req, res, next) {
+        let search = {};
+        if(req.body)
+            search = req.body;
+        CrimeModel.find(search, function (err, results) {
+            if (err) console.log(err);
+            if (results === null)
+                res.json("No crimes registered");
             else{
                 res.json(results);
             }

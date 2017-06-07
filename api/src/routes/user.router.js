@@ -8,5 +8,6 @@ router.get("/user/:id", mw.mustBePoliceChief, ctrl.read);
 router.delete("/user/:id", mw.mustBePoliceChief, ctrl.delete);
 router.post("/user", ctrl.create);
 router.get("/users", mw.mustBePoliceChief, ctrl.readAll);
+router.get("/users/pending", mw.mustBePoliceChief, ctrl.readPending);
 router.get("/login", mw.mustBeConnected);
 module.exports = router;
