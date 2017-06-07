@@ -10,9 +10,14 @@
         $scope.loginAction = function() {
             console.log($scope.username + ":" + $scope.password);
             AuthWrapper.login($scope.username, $scope.password).then(
-                function() {
+                function(d) {
                     $rootScope.$isLogged = true;
                     toastr.success("You have successfully logged in !", 'Welcome');
+                    $rootScope.loggedUser = d.data;
+                    console.log($rootScope.loggedUser.username);
+                    $cookies.put('encrypted_password', $scope.password);
+                    $cookies.put('username', $rootScope.loggedUser.username);
+
                 },
                 function (e) {
                     toastr.error(e.data, 'Error');
