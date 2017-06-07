@@ -5,16 +5,17 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.crimes.creation', [])
+  angular.module('BlurAdmin.pages.users.validation', [])
       .config(routeConfig)
 
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('crimes.creation', {
-          url: '/creation',
-          templateUrl: 'app/pages/crimes/creation/creation.html',
-            title: 'Saisir nouveau',
+        .state('users.validation', {
+          url: '/users/validation',
+            controller: 'ValidationCtrl',
+          templateUrl: 'app/pages/users/validation/validation.html',
+            title: 'Validations',
             sidebarMeta: {
                 icon: 'ion-ios-location-outline',
                 order: 500,

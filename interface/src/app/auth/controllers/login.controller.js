@@ -7,12 +7,14 @@
     /** @ngInject */
     function LoginCtrl($scope, $rootScope, $cookies, AuthWrapper, toastr) {
         console.log("controller");
+        var cPassword = $cookies.get('encrypted_password');
+        var cUsername = $cookies.get('username');
+
         $scope.loginAction = function() {
             console.log($scope.username + ":" + $scope.password);
             AuthWrapper.login($scope.username, $scope.password).then(
                 function(d) {
                     $rootScope.$isLogged = true;
-                    toastr.success("You have successfully logged in !", 'Welcome');
                     $rootScope.loggedUser = d.data;
                     console.log($rootScope.loggedUser.username);
                     $cookies.put('encrypted_password', $scope.password);
@@ -25,6 +27,12 @@
                     console.log({error : e.data})
                 }
             );
+        }
+
+        if (cPassword && cUsername) {
+            $scope.password = cPassword;
+            $scope.username = cUsername;
+            $scope.loginAction();
         }
     }
 

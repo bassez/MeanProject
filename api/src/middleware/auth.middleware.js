@@ -11,7 +11,7 @@ class AuthController {
             if (user.rank >= 1)
                 return next();
             else
-                res.status(403).send("You must be Agent");
+                res.status(403).json("You must be Agent");
         });
     }
     static mustBeDetective (req, res, next) {
@@ -19,7 +19,7 @@ class AuthController {
             if (user.rank >= 2)
                 return next();
             else
-                res.status(403).send("You must be Detective");
+                res.status(403).json("You must be Detective");
         });
     }
     static mustBePoliceChief (req, res, next) {
@@ -27,7 +27,7 @@ class AuthController {
             if (user.rank >= 3)
                 return next();
             else
-                res.status(403).send("You must be Police Chief");
+                res.status(403).json("You must be Police Chief");
         });
     }
 
@@ -35,7 +35,7 @@ class AuthController {
         if (!AuthController.isConnected (req, res))
             return;
         AuthController.checkUser(req, res, (user) => {
-            res.status(200).send(user);
+            res.status(200).json(user);
         });
 
     }
