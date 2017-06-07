@@ -13,7 +13,6 @@ class CrimeController {
             res.json("Error in body");
         }
         else {
-
             let crime = new CrimeModel({
                 compnos: req.body.compnos,
                 naturecode: req.body.naturecode,
@@ -36,7 +35,7 @@ class CrimeController {
                 xstreetname: req.body.xstreetname,
                 location: req.body.location
             });
-            crime.save();
+            crime.save().then((e)=>{console.log(e)}, (e)=>{console.log(e)});
             res.json("Crime registered");
         }
     }

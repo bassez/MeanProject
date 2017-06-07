@@ -13,6 +13,7 @@
     $stateProvider
         .state('crimes.creation', {
           url: '/creation',
+            controller: 'CreationCtrl',
           templateUrl: 'app/pages/crimes/creation/creation.html',
             title: 'Saisir nouveau',
             sidebarMeta: {
