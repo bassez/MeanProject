@@ -24,7 +24,9 @@ class UserController {
                 rank     : req.body.rank,
                 isValid  : false
             });
-            user.save();
+            user.save(function (e) {
+                console.log(e);
+            });
 
             res.json("User created");
         }
@@ -72,7 +74,6 @@ class UserController {
         }else {
             UserModel.findOneAndRemove(req.params.id, function (err, results) {
                 if(err) console.log("Error findOneAndRemove function : ", err);
-
                 if(results === null)
                     console.log("No such user")
                 else
@@ -88,7 +89,6 @@ class UserController {
         }else {
             UserModel.findByIdAndUpdate(req.params.id, {isValid: true}, function (err, results) {
                 if (err) console.log(err);
-
                 if (results === null)
                     console.log("No such user")
                 else
@@ -102,12 +102,25 @@ class UserController {
             UserModel.find(function (err, results) {
                 if (err) console.log(err);
                 if (results === null)
-                    console.log("No users in database")
+                    res.json.log("No users in database")
                 else{
                     console.log(results);
                     res.json(results);
                 }
             });
+    }
+
+
+    static readPending (req, res, next) {
+        UserModel.find({isValid: false}, function(err, results) {
+            if (err) console.log(err);
+            if (results === null)
+                res.json("No users pending")
+            else{
+                console.log(results);
+                res.json(results);
+            }
+        });
     }
 }
 
