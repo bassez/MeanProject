@@ -12,7 +12,7 @@ class UserController {
 
     static create (req, res, next) {
         if(Object.keys(req.body).length === 0 || Object.keys(req.body).length !== 4){
-            res.send("Error in body");
+            res.json("Error in body");
         }
         else {
             let encryptedPass = ""+Crypto.SHA1(req.body.pass);
@@ -26,13 +26,13 @@ class UserController {
             });
             user.save();
 
-            res.send("User created");
+            res.json("User created");
         }
     }
 
     static read (req, res, next) {
         if(req.params.id === undefined){
-            res.send("Missing id param");
+            res.json("Missing id param");
         }else {
             UserModel.findById(req.params.id, function (err, results) {
                 if (err) console.log(err);
@@ -48,7 +48,7 @@ class UserController {
 
     static update (req, res, next) {
         if(req.params.id === undefined){
-            res.send("Missing id param");
+            res.json("Missing id param");
         }else {
 
             if(req.body.pass)
@@ -62,13 +62,13 @@ class UserController {
                 else
                     console.log(results);
             });
-            res.send("update");
+            res.json("update");
         }
     }
 
     static delete (req, res, next) {
         if(req.params.id === undefined){
-            res.send("Missing id param");
+            res.json("Missing id param");
         }else {
             UserModel.findOneAndRemove(req.params.id, function (err, results) {
                 if(err) console.log("Error findOneAndRemove function : ", err);
@@ -78,13 +78,13 @@ class UserController {
                 else
                     console.log(results);
             });
-            res.send("Delete");
+            res.json("Delete");
         }
     }
 
     static validate (req, res, next) {
         if(req.params.id === undefined){
-            res.send("Missing id param");
+            res.json("Missing id param");
         }else {
             UserModel.findByIdAndUpdate(req.params.id, {isValid: true}, function (err, results) {
                 if (err) console.log(err);
@@ -94,7 +94,7 @@ class UserController {
                 else
                     console.log(results);
             });
-            res.send("Validate");
+            res.json("Validate");
         }
     }
 
@@ -105,7 +105,7 @@ class UserController {
                     console.log("No users in database")
                 else{
                     console.log(results);
-                    res.send(results);
+                    res.json(results);
                 }
             });
     }

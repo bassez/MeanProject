@@ -10,7 +10,7 @@ class CrimeController {
 
     static create (req, res, next) {
         if(Object.keys(req.body).length === 0 || Object.keys(req.body).length !== 20){
-            res.send("Error in body");
+            res.json("Error in body");
         }
         else {
 
@@ -37,12 +37,12 @@ class CrimeController {
                 location: req.body.location
             });
             crime.save();
-            res.send("Crime registered");
+            res.json("Crime registered");
         }
     }
     static read (req, res, next) {
         if(req.params.id === undefined){
-            res.send("Missing id param");
+            res.json("Missing id param");
         }else {
 
             CrimeModel.findById(req.params.id, function (err, results) {
@@ -59,7 +59,7 @@ class CrimeController {
 
     static update (req, res, next) {
         if(req.params.id === undefined){
-            res.send("Missing id param");
+            res.json("Missing id param");
         }else {
 
             CrimeModel.findByIdAndUpdate(req.params.id, req.body, function (err, results) {
@@ -70,13 +70,13 @@ class CrimeController {
                 else
                     console.log(results);
             });
-            res.send("update");
+            res.json("update");
         }
     }
 
     static delete (req, res, next) {
         if(req.params.id === undefined){
-            res.send("Missing id param");
+            res.json("Missing id param");
         }else {
             CrimeModel.findOneAndRemove(req.params.id, function (err, results) {
                 if(err) console.log("Error findOneAndRemove function : ", err);
@@ -86,7 +86,7 @@ class CrimeController {
                 else
                     console.log(results);
             });
-            res.send("Deleted");
+            res.json("Deleted");
         }
     }
 
@@ -96,7 +96,7 @@ class CrimeController {
             if (results === null)
                 console.log("No crimes registered")
             else{
-                res.send(results);
+                res.json(results);
             }
         });
     }
