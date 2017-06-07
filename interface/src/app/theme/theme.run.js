@@ -9,7 +9,7 @@
     .run(themeRun);
 
   /** @ngInject */
-  function themeRun($timeout, $rootScope, layoutPaths, preloader, $q, baSidebarService, themeLayoutSettings) {
+  function themeRun($timeout, $rootScope, layoutPaths, preloader, $q, baSidebarService, themeLayoutSettings, $cookies) {
     var whatToWait = [
       preloader.loadAmCharts(),
       $timeout(1000)
@@ -36,6 +36,17 @@
     }, 2000);
 
     $rootScope.$isLogged = false;
+    $rootScope.$signUp = false;
+    $rootScope.$signIn = true;
+
+    $rootScope.toSignUp = () => {
+        $rootScope.$signUp = true;
+        $rootScope.$signIn = false;
+    };
+    $rootScope.toSignIn = () => {
+          $rootScope.$signIn = true;
+          $rootScope.$signUp = false;
+      };
 
     $rootScope.ranks = ["", "Agent", "Detective", "Police Chief"];
 
@@ -44,6 +55,9 @@
         console.log("deconnexion");
         $rootScope.$isLogged = false;
         $rootScope.loggedUser = null;
+        $cookies.delete("username");
+        $cookies.delete("encrypted_password");
+
     }
 
     $rootScope.$baSidebarService = baSidebarService;

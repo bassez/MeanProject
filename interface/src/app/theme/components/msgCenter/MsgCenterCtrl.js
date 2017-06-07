@@ -7,33 +7,28 @@
   /** @ngInject */
   function MsgCenterCtrl($scope, AuthWrapper, toastr) {
     console.log("coucou");
-    $scope.validations = [
-      {
-        username: 'TheSuperUserTruc',
-        email: 'tsut@bitch.com',
-          rank: 1
-      },
-        {
-            username: 'anonymous',
-            email: 'iam@home.posey',
-            rank: 2
+    $scope.validations = [];
+
+    AuthWrapper.getRequest("users/pending/").then(
+        (d)=>{
+            $scope.validations = d.data;
+            $scope.validationsCount = $scope.validations.length;
         },
-        {
-            username: 'Albert Einstein',
-            email: 'ae@space.time',
-            rank: 2
-        }
-    ];
+        (e)=>{
+            toastr.error(e, "Error");
+        });
 
     $scope.validationsCount = $scope.validations.length;
+
     $scope.acceptAll = () => {
       for (let i in $scope.validations)
           $scope.acceptUser($scope.validations[i])
     };
+
     $scope.acceptUser = (user) => {
-      AuthWrapper.getRequest("user/" + 1).then(
+      AuthWrapper.getRequest("user/" + user._id + "/validate").then(
           (d) => {
-              toastr.success("User was successfully validated !", 'Success');
+              toastr.success(d.data, 'Success');
               $scope.validations.splice($scope.validations.indexOf(user), 1);
               $scope.validationsCount = $scope.validations.length;
           },
@@ -41,6 +36,19 @@
               toastr.error(e.data, 'Error');
           }
       )
+    };
+
+    $scope.removeUser = (user) => {
+        AuthWrapper.deleteRequest("user/" + user._id).then(
+        (d) => {
+            toastr.success(d.data, 'Success');
+            $scope.validations.splice($scope.validations.indexOf(user), 1);
+            $scope.validationsCount = $scope.validations.length;
+        },
+        (e) => {
+            toastr.error(e.data, 'Error');
+        }
+    )
     };
   }
 })();

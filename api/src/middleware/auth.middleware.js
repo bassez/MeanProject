@@ -46,16 +46,20 @@ class AuthController {
         var userCredentials = basicAuth(req);
         userModel.findOne({username: userCredentials.name}, function (e, user) {
             if (!user || userCredentials.name != user.username || crypto.SHA1(userCredentials.pass) != user.password)
-                res.status(403).send("Wrong credentials !");
-            else
-             callback(user);
+                res.status(403).json("Wrong credentials !");
+            else {
+                if (!user.isValid)
+                    res.status(403).json("User is not valid ! Please wait for a Police Chief validation.");
+                else
+                    callback(user);
+            }
         });
     }
 
     static isConnected (req, res) {
         var userCredentials = basicAuth(req);
         if (!userCredentials || !userCredentials.name || !userCredentials.pass) {
-            res.status(401).send("You must be connected");
+            res.status(401).json("You must be connected");
             return false;
         }
         return true;

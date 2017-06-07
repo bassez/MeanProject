@@ -10,7 +10,7 @@ class CrimeController {
 
     static create (req, res, next) {
         if(Object.keys(req.body).length === 0 || Object.keys(req.body).length !== 20){
-            res.json("Error in body");
+            res.status(404).json("Error in body");
         }
         else {
             let crime = new CrimeModel({
@@ -40,43 +40,30 @@ class CrimeController {
         }
     }
     static read (req, res, next) {
-        if(req.params.id === undefined){
-            res.json("Missing id param");
-        }else {
-
             CrimeModel.findById(req.params.id, function (err, results) {
                 if (err) console.log(err);
                 if (results === null)
-                    res.json("No such crime");
+                    res.status(404).json("No such crime");
                 else{
                     console.log(results);
                     res.json(results);
                 }
             });
-        }
     }
 
     static update (req, res, next) {
-        if(req.params.id === undefined){
-            res.json("Missing id param");
-        }else {
-
             CrimeModel.findByIdAndUpdate(req.params.id, req.body, function (err, results) {
                 if (err) console.log(err);
 
                 if (results === null)
-                    res.json("No such crime");
+                    res.status(404).json("No such crime");
                 else
                     console.log(results);
             });
             res.json("Updated");
-        }
     }
 
     static delete (req, res, next) {
-        if(req.params.id === undefined){
-            res.json("Missing id param");
-        }else {
             CrimeModel.findOneAndRemove(req.params.id, function (err, results) {
                 if(err) console.log("Error findOneAndRemove function : ", err);
 
@@ -86,7 +73,6 @@ class CrimeController {
                     console.log(results);
             });
             res.json("Deleted");
-        }
     }
 
     static readAll (req, res, next) {

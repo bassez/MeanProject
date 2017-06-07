@@ -12,7 +12,7 @@ class UserController {
 
     static create (req, res, next) {
         if(Object.keys(req.body).length === 0 || Object.keys(req.body).length !== 4){
-            res.json("Error in body");
+            res.status(400).json("Error in body");
         }
         else {
             let encryptedPass = ""+Crypto.SHA1(req.body.pass);
@@ -33,9 +33,6 @@ class UserController {
     }
 
     static read (req, res, next) {
-        if(req.params.id === undefined){
-            res.json("Missing id param");
-        }else {
             UserModel.findById(req.params.id, function (err, results) {
                 if (err) console.log(err);
                 if (results === null)
@@ -45,14 +42,9 @@ class UserController {
                     res.json(results);
                 }
             });
-        }
     }
 
     static update (req, res, next) {
-        if(req.params.id === undefined){
-            res.json("Missing id param");
-        }else {
-
             if(req.body.pass)
                 req.body.pass = ""+Crypto.SHA1(req.body.pass);
 
@@ -65,13 +57,9 @@ class UserController {
                     console.log(results);
             });
             res.json("update");
-        }
     }
 
     static delete (req, res, next) {
-        if(req.params.id === undefined){
-            res.json("Missing id param");
-        }else {
             UserModel.findOneAndRemove(req.params.id, function (err, results) {
                 if(err) console.log("Error findOneAndRemove function : ", err);
                 if(results === null)
@@ -80,13 +68,9 @@ class UserController {
                     console.log(results);
             });
             res.json("Delete");
-        }
     }
 
     static validate (req, res, next) {
-        if(req.params.id === undefined){
-            res.json("Missing id param");
-        }else {
             UserModel.findByIdAndUpdate(req.params.id, {isValid: true}, function (err, results) {
                 if (err) console.log(err);
                 if (results === null)
@@ -94,8 +78,7 @@ class UserController {
                 else
                     console.log(results);
             });
-            res.json("Validate");
-        }
+            res.json("User was successfully validated");
     }
 
     static readAll (req, res, next) {
