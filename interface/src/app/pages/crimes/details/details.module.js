@@ -12,7 +12,7 @@
   function routeConfig($stateProvider) {
     $stateProvider
         .state('crimes.details', {
-          url: '/crimes/details',
+          url: '/details',
           templateUrl: 'app/pages/crimes/details/details.html',
         });
   }

@@ -39,6 +39,7 @@
 
     $rootScope.ranks = ["", "Agent", "Detective", "Police Chief"];
 
+
     $rootScope.logout = () => {
         console.log("deconnexion");
         $rootScope.$isLogged = false;

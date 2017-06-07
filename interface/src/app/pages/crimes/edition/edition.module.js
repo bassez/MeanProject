@@ -12,7 +12,7 @@
   function routeConfig($stateProvider) {
     $stateProvider
         .state('crimes.edition', {
-          url: '/crimes/edition',
+          url: '/edition',
           templateUrl: 'app/pages/crimes/edition/edition.html',
         });
   }
