@@ -17,6 +17,7 @@
             console.log ($location.path())
             if ($location.path() == "/crimes/search") {
                 console.log("reloading page :)")
+                $scope.searchBar = "";
                 $state.reload();
             }
             $location.path ("crimes/search");

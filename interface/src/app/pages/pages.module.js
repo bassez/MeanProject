@@ -11,11 +11,5 @@
       'BlurAdmin.pages.crimes',
       'BlurAdmin.pages.users'
   ])
-      .config(routeConfig);
-
-  /** @ngInject */
-  function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-    $urlRouterProvider.otherwise('/dashboard');
-  }
 
 })();

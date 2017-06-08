@@ -12,9 +12,10 @@
         $scope.getAllCrimes = () => {
             $scope.pending = true;
             AuthWrapper.getRequest("crimes", {}).then(function (res) {
-                console.log("RESSSSS", res);
+                console.log("ALL RESSSSS", res);
                 $scope.crimes = res.data;
                 $scope.pending = false;
+                $scope.done = true;
             });
         };
 
@@ -24,7 +25,7 @@
         $scope.quickSearch = () => {
             $scope.searchbar = $rootScope.$searchBar;
             console.log ($scope.searchbar)
-            if ($scope.searchbar == "") {
+            if (!$scope.searchbar || $scope.searchbar == "") {
                 console.log("empty search")
 
                 $scope.getAllCrimes();
