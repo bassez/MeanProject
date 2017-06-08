@@ -1,1 +1,41 @@
-recherche du bayou
+<div class="col-lg-12">
+    <div class="search col-lg-10">
+        <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
+        <input id="searchInput" type="text" placeholder="Search for a crime ..." ng-model="search.query">
+    </div>
+</div>
+
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
+    <div class="horizontal-scroll">
+        <table class="table table-bordered" style="background-color: white">
+            <thead>
+                <tr>
+                    <th>Compnos</th>
+                    <th>Nature code</th>
+                    <th>Incident type</th>
+                    <th>Date</th>
+                    <th>Main crime code</th>
+                    <th>Dirstrict</th>
+                    <th>Area</th>
+                    <th>Street name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="crime in crimes | limitTo:30">
+                    <th>{{crime.compnos}}</th>
+                    <th>{{crime.naturecode}}</th>
+                    <th>{{crime.incident_type_description}}</th>
+                    <th>{{crime.fromdate}}</th>
+                    <th>{{crime.main_crimecode}}</th>
+                    <th>{{crime.reptdistrict}}</th>
+                    <th>{{crime.reportingarea}}</th>
+                    <th>{{crime.streetname}}</th>
+                </tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-lg-2"></div>
+

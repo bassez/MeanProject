@@ -13,6 +13,7 @@
     $stateProvider
         .state('crimes.search', {
           url: '/search',
+          controller: 'searchCtrl',
           templateUrl: 'app/pages/crimes/search/search.html',
         });
   }
