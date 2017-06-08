@@ -1,1 +1,127 @@
-details du bayou
+<div ng-if="!crime" >Crime not found :(</div>
+<div ng-if="crime" class="widgets">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div
+                    ba-panel
+                    ba-panel-title="Identification"
+                    ba-panel-class="with-scroll">
+                <div >
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">Compnos</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.compnos}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputLastName" class="col-sm-6 control-label">Nature Code</label>
+                        <label for="inputLastName" class="col-sm-6 control-label">{{crime.naturecode}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">UCR Part</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.ucrpart}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputLastName" class="col-sm-6 control-label">Incident Type Description</label>
+                        <label for="inputLastName" class="col-sm-6 control-label">{{crime.incident_type_description}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">Main Crimecode</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.main_crimecode}}</label>
+                    </div>
+                </div>
+            </div>
+            <div
+                    ba-panel
+                    ba-panel-title="Localisation"
+                    ba-panel-class="with-scroll">
+                <div >
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">X</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.x}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputLastName" class="col-sm-6 control-label">Y</label>
+                        <label for="inputLastName" class="col-sm-6 control-label">{{crime.y}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">Street Name</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.streetname}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputLastName" class="col-sm-6 control-label">Cross Street Name (optional)</label>
+                        <label for="inputLastName" class="col-sm-6 control-label">{{crime.xstreetname}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">Reptorted District</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.reptdistrict}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputLastName" class="col-sm-6 control-label">Reporting Area</label>
+                        <label for="inputLastName" class="col-sm-6 control-label">{{crime.reportingarea}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">Localisation</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.location}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div
+                    ba-panel
+                    ba-panel-title="Time"
+                    ba-panel-class="with-scroll">
+                <div >
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">Year</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.year}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputLastName" class="col-sm-6 control-label">Month</label>
+                        <label for="inputLastName" class="col-sm-6 control-label">{{crime.month}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">Day Week</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.day_week}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputLastName" class="col-sm-6 control-label">Date from</label>
+                        <label for="inputLastName" class="col-sm-6 control-label">{{crime.fromdate}}</label>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">Shift</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.shift}}</label>
+                    </div>
+                </div>
+            </div>
+            <div
+                    ba-panel
+                    ba-panel-title="Details"
+                    ba-panel-class="with-scroll">
+                <div >
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">Shooting </label>
+                        <input disabled type="checkbox" ng-model="crime.shooting">
+
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputLastName" class="col-sm-6 control-label">Domestic</label>
+                        <input disabled type="checkbox" ng-model="crime.domestic">
+
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-6 control-label">Weapon Type</label>
+                        <label for="inputFirstName" class="col-sm-6 control-label">{{crime.weapontype}}</label>
+                    </div>
+                </div>
+            </div>
+            <button ng-if="loggedUser.rank >= 2" ng-click="toCrimeEdition()" type="button" style="width: 90%; margin-left: 5%; margin-bottom: 10px;" class="btn btn-primary">
+                <i class="glyphicon glyphicon-add" >  Edit</i>
+            </button>
+            <button ng-if="loggedUser.rank >= 3" ng-click="deleteCrime()" type="button" style="width: 90%; margin-left: 5%" class="btn btn-danger">
+                <i class="glyphicon glyphicon-add" >  Delete</i>
+            </button>
+        </div>
+    </div>
+
+</div>

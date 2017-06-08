@@ -9,7 +9,7 @@
     .run(themeRun);
 
   /** @ngInject */
-  function themeRun($timeout, $rootScope, layoutPaths, preloader, $q, baSidebarService, themeLayoutSettings, $cookies) {
+  function themeRun($timeout, $location, $rootScope, layoutPaths, preloader, $q, baSidebarService, themeLayoutSettings, $cookies) {
     var whatToWait = [
       preloader.loadAmCharts(),
       $timeout(1000)
@@ -38,6 +38,8 @@
     $rootScope.$isLogged = false;
     $rootScope.$signUp = false;
     $rootScope.$signIn = true;
+
+    $rootScope.$searchBar = "";
 
     $rootScope.toSignUp = () => {
         $rootScope.$signUp = true;

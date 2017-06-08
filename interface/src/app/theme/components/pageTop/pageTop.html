@@ -2,9 +2,11 @@
   <a href="#/dashboard" class="al-logo clearfix"><span>Crime</span>Desktop</a>
   <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
 
-  <div class="search">
-    <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
-    <input id="searchInput" type="text" placeholder="Search for a crime ...">
+  <div class="search" ng-controller="pageTopCtrl">
+    <form name="quick_search" ng-submit="quickSearch()" >
+      <i class="ion-ios-search-strong"></i>
+      <input id="searchInput" type="text" ng-model="searchBar" placeholder="Search for a crime ...">
+    </form>
   </div>
 
   <div class="user-profile clearfix">
@@ -14,8 +16,6 @@
       </a>
       <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
         <li><i class="dropdown-arr"></i></li>
-        <li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>
-        <li><a href><i class="fa fa-cog"></i>Settings</a></li>
         <li><a href class="signout" ng-click="logout()"><i class="fa fa-power-off"></i>Sign out</a></li>
       </ul>
     </div>

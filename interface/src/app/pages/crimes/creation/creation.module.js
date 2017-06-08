@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function () {
   'use strict';
 
@@ -17,7 +13,7 @@
           templateUrl: 'app/pages/crimes/creation/creation.html',
             title: 'Saisir nouveau',
             sidebarMeta: {
-                icon: 'ion-ios-location-outline',
+                icon: 'ion-plus-round',
                 order: 500,
             },
         });

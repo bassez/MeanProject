@@ -12,7 +12,9 @@
   function routeConfig($stateProvider) {
     $stateProvider
         .state('crimes.edition', {
-          url: '/edition',
+          url: '/update/:id',
+          title: 'Crime edition',
+          controller: 'EditionCtrl',
           templateUrl: 'app/pages/crimes/edition/edition.html',
         });
   }

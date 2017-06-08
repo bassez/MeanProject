@@ -11,7 +11,7 @@
         $scope.opened = false;
 
         $scope.dt = new Date();
-        $scope.format = "yyyy-MM-ddThh:mm:ss";
+        $scope.format = "yyyy-MM-ddTHH:mm:ss";
 
         $scope.form = {
             compnos: null,

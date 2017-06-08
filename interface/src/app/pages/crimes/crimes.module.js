@@ -21,7 +21,7 @@
           template: '<div ui-view  autoscroll="true" autoscroll-body-top></div>',
           title: 'Crimes',
           sidebarMeta: {
-            icon: 'ion-stats-bars',
+            icon: 'ion-ios-box',
             order: 150,
           },
         });

@@ -1,1 +1,52 @@
-recherche du bayou
+<div class="col-lg-3">
+    <div
+            ba-panel
+            ba-panel-title="Filters"
+            ba-panel-class="with-scroll">
+        <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
+        <input id="searchInput" type="text" placeholder="Search for a crime ..." ng-model="search.query">
+    </div>
+</div>
+
+<div class="col-lg-9">
+    <div >
+        <table class="table table-bordered" style="background-color: white">
+            <thead>
+            <tr>
+                <th>Compnos</th>
+                <th>Nature code</th>
+                <th>Incident type</th>
+                <th>Date</th>
+                <th>Main crime code</th>
+                <th>Dirstrict</th>
+                <th>Area</th>
+                <th>Street name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <style>
+                .crimerow:hover {
+                    background-color: #209e91;
+                }
+            </style>
+            <tr ng-if="!pending" class="crimerow" ng-repeat="crime in crimes | limitTo:30" ng-click="goToDetails(crime)">
+                <th>{{crime.compnos}}</th>
+                <th>{{crime.naturecode}}</th>
+                <th>{{crime.incident_type_description}}</th>
+                <th>{{crime.fromdate}}</th>
+                <th>{{crime.main_crimecode}}</th>
+                <th>{{crime.reptdistrict}}</th>
+                <th>{{crime.reportingarea}}</th>
+                <th>{{crime.streetname}}</th>
+            </tr>
+            </tr>
+            </tbody>
+        </table>
+        <div class="col-lg-offset-5" style="margin-top: 10px;"ng-if="pending">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+            <span >Loading...</span>
+        </div>
+    </div>
+</div>
+<div class="col-lg-2"></div>
+

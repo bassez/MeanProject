@@ -88,16 +88,38 @@ class CrimeController {
 
     static search (req, res, next) {
         let search = {};
-        if(req.body)
-            search = req.body;
-        CrimeModel.find(search, function (err, results) {
-            if (err) console.log(err);
-            if (results === null)
-                res.json("No crimes registered");
-            else{
-                res.json(results);
-            }
-        });
+            let crimeFilters = { $or: [
+                {compnos: req.body.compnos},
+                {naturecode: req.body.naturecode},
+                {incident_type_description: req.body.incident_type_description},
+                {main_crimecode: req.body.main_crimecode},
+                {reptdistrict: req.body.reptdistrict},
+                {reportingarea: req.body.reportingarea},
+                {fromdate: req.body.fromdate},
+                {weapontype: req.body.weapontype},
+                {shooting: req.body.shooting},
+                {domestic: req.body.domestic},
+                {shift: req.body.shift},
+                {year: req.body.year},
+                {month: req.body.month},
+                {day_week: req.body.day_week},
+                {ucrpart: req.body.ucrpart},
+                {x: req.body.x},
+                {y: req.body.y},
+                {streetname: req.body.streetname},
+                {xstreetname: req.body.xstreetname},
+                {location: req.body.location}
+            ]};
+            CrimeModel.find(crimeFilters, function (err, results) {
+                console.log(results)
+                if (err) console.log(err);
+                if (results === null)
+                    res.json("No crimes registered");
+                else{
+                    res.json(results);
+                }
+            });
+
     }
 }
 
